@@ -5,6 +5,14 @@ using Microsoft.Extensions.Hosting;
 
 var builder = FunctionsApplication.CreateBuilder(args);
 
+builder.Services.AddCors(opt =>
+{
+    opt.AddDefaultPolicy(pb =>
+    {
+        pb.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); // or specify origins: .WithOrigins("http://localhost:7144")
+
+    });
+});
 
 builder.ConfigureFunctionsWebApplication();
 
